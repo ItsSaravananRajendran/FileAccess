@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>File Upload</title>
+  <link rel="stylesheet" href="static/css/upload.css">
+</head>
+<script src='static/js/jquery.min.js'></script>
+<script  src="static/js/index.js"></script>
+<script src="static/lib/codemirror.js"></script>
+<link rel="stylesheet" href="static/lib/codemirror.css">
+<script src="static/mode/javascript/javascript.js"></script>
+<script >
+  var status= "{{status}}"
+  if (status){
+    alert(status);
+  }
+</script>
+<body>
+<form  id="formID" action="/save" method="POST">
+	<input type="hidden" name="dir" value={{directory}}>
+	<input type="hidden" name="file" value={{file}}>
+	<input type="hidden" name="perm" value={{perm}}>
+	<input type="hidden" id="formData" name="data" >
+    <textarea id="texta" name="fun">wooo</textarea>
+    <button onclick="sub()">save</button>
+</form>
+
+
+<script>
+var myTextArea  = document.getElementById("texta");  
+
+var myCodeMirror1 = CodeMirror(function(elt) {
+      myTextArea.parentNode.replaceChild(elt, myTextArea);
+}, {value: `{{data}}`,
+    readOnly: {{perm}}
+});
+
+
+function sub() {
+	document.getElementById("formData").value = myCodeMirror1.getValue();
+	document.getElementById("formID").submit();
+
+}
+</script>
+</body>
+</html>

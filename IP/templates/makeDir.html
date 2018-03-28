@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Select a folder to upload</title>
+  <link rel="stylesheet" href="static/css/makeDir.css">
+</head>
+<script >
+  var status= "{{status}}"
+  if (status){
+    alert(status);
+  }
+</script>
+
+
+<body onload="statusAlert();"" >
+  
+    <div class="login-page">
+    <div class="form">
+      <form class="register-form" action="/retr" method="POST">
+        <center>
+          <h1 style="color: #76b852;" > Create a folder to upload </h1>
+          </center>
+        <input type="hidden" name="dir" value={{directory}}>
+        <input type="text" placeholder="Folder name" name="folderName"/>
+        <button>Create Folder</button>
+        <p class="message"><a href="#">Go back</a></p>
+      </form>
+      <center>
+      <form class="login-form"  action="/fileSelect" method="POST">
+        <input type="hidden" name="dir" value={{directory}}>
+          <h1 style="color: #76b852;" > Select  a folder to upload </h1>
+          <table class="image" style="padding-right: 20px; padding-bottom: 20px">
+              <tr>
+                <td style="padding-left:15px; padding-right: 15px">
+                    <p class="message"><a href="#"><img  src="static/img/folder.svg" style="width: 90px;height: 90px"  alt="Add folder" /></a></p>
+                    <br>
+                    <center >Add folder</center>
+                </td>
+                {% set count = [1]  %}
+                {% for item in items %}
+                    {% if count[0] is divisibleby(6) %}
+                      </tr>
+                      <tr>
+                    {% endif %}
+                    <td style="padding-left:15px; padding-right: 15px">
+                          <label for="{{item}}">
+                            <button style="background-color: Transparent;background-repeat:no-repeat; border: none;cursor:pointer;overflow: hidden;outline:none;" name="submit" value="{{item[1]}}"><img   src="static/img/{{item[0]}}.svg" width="90px" height="90px" alt="{{item[1]}}" /></button>
+                            <br>
+                            <center>{{item[1]}}</center>
+                          </label>
+                    </td>  
+                    {% if count.append(count.pop() + 1) %}{% endif %}  
+                {% endfor %}
+              </tr>
+            </table>
+        <input type="hidden" name="perm" value={{perm}}>
+        <button name="submit" value="upload">Upload files here</button>
+      </form>
+      </center>
+    </div>
+  </div>
+<script src='static/js/jquery.min.js'></script>
+<script  src="static/js/index.js"></script>
+</body>
+</html>

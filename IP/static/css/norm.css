@@ -1,0 +1,38 @@
+body{
+  background: #00BCD4;
+}
+
+.center{
+	margin-top: 150px;
+	background: #fff;
+	width: 100px;
+	padding: 15px;
+	border-radius: 9px;
+}
+
+
+h1,p{
+	color: #00BCD4;
+}
+
+form button{
+  margin: 0;
+  color: #fff;
+  background: #16a085;
+  border: none;
+  width: 90%;
+  height: 35px;
+  margin-top: -20px;
+  margin-left: -4px;
+  border-radius: 4px;
+  border-bottom: 4px solid #117A60;
+  transition: all .2s ease;
+  outline: none;
+}
+form button:hover{
+  background: #149174;
+  color: #0C5645;
+}
+form button:active{
+  border:0;
+}
